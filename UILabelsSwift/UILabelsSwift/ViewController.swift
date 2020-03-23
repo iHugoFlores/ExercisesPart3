@@ -27,6 +27,22 @@ class ViewController: UIViewController {
         drawLabes(4)
         drawLabelsInVStackView()
         drawLabelsInHStackView()
+        drawClickableLabel()
+    }
+    
+    func drawClickableLabel() {
+        var label = UILabel(frame: CGRect(x: screenWidth / 4, y: (screenHeight / 4), width: 90, height: 21))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        decorateLabel(&label)
+        label.text = "Clickable"
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(tap)
+        self.view.addSubview(label)
+    }
+    
+    @objc
+    func tapFunction(sender:UITapGestureRecognizer) {
+        print("tap working")
     }
     
     func drawLabelsInHStackView() {
