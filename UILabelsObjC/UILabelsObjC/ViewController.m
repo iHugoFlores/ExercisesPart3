@@ -37,7 +37,53 @@
         [self.view addSubview:myLabel];
         
         [self addLoopLabels:4];
+        
+        [self drawLabelsInVStackView];
+        [self drawLabelsInHStackView];
     }
+
+- (void) drawLabelsInHStackView {
+    UILabel *label1 = [[UILabel alloc] init];
+    label1.text = @"Hello";
+    label1.backgroundColor = UIColor.cyanColor;
+    
+    UILabel *label2 = [[UILabel alloc] init];
+    label2.text = @"Horizontal Stack";
+    
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:[NSArray arrayWithObjects: label1, label2, nil]];
+    stackView.axis = UILayoutConstraintAxisHorizontal;
+    stackView.distribution = UIStackViewDistributionFillEqually;
+    
+    [self.view addSubview: stackView];
+    
+    stackView.translatesAutoresizingMaskIntoConstraints = false;
+    
+    [stackView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    [stackView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
+    [stackView.heightAnchor constraintEqualToConstant:50].active = YES;
+    [stackView.widthAnchor constraintEqualToConstant: [UIScreen mainScreen].bounds.size.width / 2].active = YES;
+}
+
+- (void) drawLabelsInVStackView {
+    UILabel *label1 = [[UILabel alloc] init];
+    label1.text = @"Hello";
+    label1.backgroundColor = UIColor.cyanColor;
+    
+    UILabel *label2 = [[UILabel alloc] init];
+    label2.text = @"Vertical Stack";
+    
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:[NSArray arrayWithObjects: label1, label2, nil]];
+    stackView.axis = UILayoutConstraintAxisVertical;
+    stackView.distribution = UIStackViewDistributionFillEqually;
+    
+    [self.view addSubview: stackView];
+    
+    stackView.translatesAutoresizingMaskIntoConstraints = false;
+    
+    [stackView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    [stackView.heightAnchor constraintEqualToConstant:50].active = YES;
+    [stackView.widthAnchor constraintEqualToConstant: [UIScreen mainScreen].bounds.size.width / 2].active = YES;
+}
 
     - (void) addLoopLabels:(int) n {
         CGFloat width = [UIScreen mainScreen].bounds.size.width;
