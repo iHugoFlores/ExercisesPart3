@@ -40,7 +40,28 @@
         
         [self drawLabelsInVStackView];
         [self drawLabelsInHStackView];
+        [self drawClickableLable];
     }
+
+- (void) drawClickableLable {
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+
+    CGRect labelFrame = CGRectMake(width / 4, height / 4, 90, 21);
+    UILabel *myLabel = [[UILabel alloc] initWithFrame:labelFrame];
+    myLabel.text = @"Clickable";
+    [self decorateUILabel:myLabel];
+    myLabel.userInteractionEnabled = true;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFunction:)];
+    [myLabel addGestureRecognizer:tap];
+    [self.view addSubview:myLabel];
+}
+
+- (void) tapFunction: (UITapGestureRecognizer *)recognizer {
+    printf("tap working");
+}
+
 
 - (void) drawLabelsInHStackView {
     UILabel *label1 = [[UILabel alloc] init];
